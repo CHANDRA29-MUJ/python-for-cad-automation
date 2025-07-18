@@ -1,0 +1,4 @@
+type,id,od,thickness,lip_od,lip_thickness,quantity,hole_dia,num_holes,pcd
+washer,10,20,2,,,,,
+spacer,8,18,10,,,,,
+flange,12,30,4,36,2,1,6,4,24
