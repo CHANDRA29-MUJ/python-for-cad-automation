@@ -82,7 +82,7 @@ def run(context):
         head = extrudes.add(head_input)
         head.bodies.item(0).name = "Bolt Head"
 
-        ui.messageBox('✅ Bolt created with your custom parameters!')
+        ui.messageBox('Bolt created with your custom parameters!')
 
     except:
         if ui:
