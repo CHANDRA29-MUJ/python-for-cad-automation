@@ -8,7 +8,7 @@ def run(_context):
         design = adsk.fusion.Design.cast(app.activeProduct)
         rootComp = design.rootComponent
 
-        # === INPUT PARAMETERS ===
+        # Inputs
         num_teeth = 20
         module = 2.0              # mm
         pressure_angle_deg = 20  # degrees
@@ -26,7 +26,7 @@ def run(_context):
         outer_radius = pitch_radius + addendum
         root_radius = pitch_radius - dedendum
 
-        # === Create base sketch ===
+        # Create Sketch
         sketches = rootComp.sketches
         xyPlane = rootComp.xYConstructionPlane
         sketch = sketches.add(xyPlane)
@@ -34,7 +34,6 @@ def run(_context):
 
         center = adsk.core.Point3D.create(0, 0, 0)
 
-        # === Generate involute points ===
         def involute_point(r_base, t):
             x = r_base * (math.cos(t) + t * math.sin(t))
             y = r_base * (math.sin(t) - t * math.cos(t))
@@ -49,15 +48,13 @@ def run(_context):
             t = i * max_angle / num_points
             pt = involute_point(base_radius, t)
             involute_curve_pts.add(pt)
-
-            # Mirror manually across Y-axis (x -> -x)
+        
             mirrored_curve_pts.add(adsk.core.Point3D.create(-pt.x, pt.y, 0))
 
         lines = sketch.sketchCurves.sketchLines
         spline = sketch.sketchCurves.sketchFittedSplines.add(involute_curve_pts)
         mirrored_spline = sketch.sketchCurves.sketchFittedSplines.add(mirrored_curve_pts)
 
-        # === Close the tooth profile ===
         pt1 = involute_curve_pts.item(0)
         pt2 = mirrored_curve_pts.item(0)
         pt3 = involute_curve_pts.item(involute_curve_pts.count - 1)
@@ -66,7 +63,7 @@ def run(_context):
         lines.addByTwoPoints(pt1, pt2)
         lines.addByTwoPoints(pt3, pt4)
 
-        # === Find tooth profile ===
+       
         gear_profile = None
         for prof in sketch.profiles:
             if prof.profileLoops.count == 1:
@@ -77,13 +74,12 @@ def run(_context):
             ui.messageBox('⚠️ Could not find tooth profile.')
             return
 
-        # === Extrude the tooth ===
+        # Extrude
         extrudes = rootComp.features.extrudeFeatures
         tooth_input = extrudes.createInput(gear_profile, adsk.fusion.FeatureOperations.NewBodyFeatureOperation)
         tooth_input.setDistanceExtent(False, adsk.core.ValueInput.createByReal(gear_thickness))
         tooth_body = extrudes.add(tooth_input)
 
-        # === Circular pattern of tooth ===
         tooth_collection = adsk.core.ObjectCollection.create()
         tooth_collection.add(tooth_body)
 
@@ -95,7 +91,6 @@ def run(_context):
         pattern_input.isSymmetric = False
         circular_patterns.add(pattern_input)
 
-        # === Create bore ===
         bore_sketch = sketches.add(xyPlane)
         bore_sketch.name = "Bore"
         bore_sketch.sketchCurves.sketchCircles.addByCenterRadius(center, bore_dia / 2)
@@ -105,8 +100,8 @@ def run(_context):
         cut_input.setDistanceExtent(False, adsk.core.ValueInput.createByReal(gear_thickness + 0.1))
         extrudes.add(cut_input)
 
-        ui.messageBox("✅ Involute gear created successfully!")
+        ui.messageBox("Involute gear created successfully!")
 
     except:
         if ui:
-            ui.messageBox('❌ Failed:\n{}'.format(traceback.format_exc()))
+            ui.messageBox('Failed:\n{}'.format(traceback.format_exc()))
