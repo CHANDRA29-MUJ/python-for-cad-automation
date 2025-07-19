@@ -1,0 +1,4 @@
+Name,Type,ID (mm),OD (mm),Thickness (mm),Lip OD (mm),Lip Thickness (mm),Hole Dia (mm),Num Holes,PCD (mm),Quantity
+washer_20x10x2,washer,10.0,20.0,2.0,,,,,,0
+spacer_18x8x10,spacer,8.0,18.0,10.0,,,,,,0
+flange_30x12x4,flange,12.0,30.0,4.0,36.0,2.0,6.0,4,24.0,1
