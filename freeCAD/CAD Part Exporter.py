@@ -6,9 +6,9 @@ import csv
 import os
 import math
 
-# Input File Paths 
-input_csv = r"C:\Users\chand\OneDrive - Manipal University Jaipur\Desktop\input_parts.csv"
-output_dir = r"C:\Users\chand\OneDrive - Manipal University Jaipur\Desktop\generated_parts"
+# Input File Paths - Not Complete So Please Fill According to Your Needs - Without this input, Code Will Not Work
+input_csv = r"C:\\input_parts.csv"
+output_dir = r"C:\\generated_parts"
 bom_file = "BOM.csv"
 
 App.newDocument("BOM_Generator")
