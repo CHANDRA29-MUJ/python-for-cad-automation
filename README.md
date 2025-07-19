@@ -1,13 +1,13 @@
-# 🛠️ Python for CAD Automation
+#  Python for CAD Automation
 
 This is a personal toolkit of Python scripts designed to automate 3D part generation and export using popular CAD platforms like **FreeCAD** and **Fusion 360**. The goal is to streamline repetitive modeling tasks and enable parametric design through simple CSV or user input.
 
-📌 Why This Project?
+# 🚀 Why This Project?
 As a mechanical engineering student, I wanted to reduce time spent on repetitive modeling by building my own Python-based CAD automation tools. This repo serves as a learning playground and a growing toolkit for design automation.
 
 ---
 
-## 🚀 What’s Included
+##  What’s Included
 
 ### 📌 FreeCAD Tools
 - **Washer/Spacer/Flange Generator**
@@ -20,7 +20,7 @@ As a mechanical engineering student, I wanted to reduce time spent on repetitive
 
 ---
 
-### ⚙️ Fusion 360 Add-ins 
+### 📌 Fusion 360 Add-ins 
 - **Bolt Generator**
 - **Gear Generator**
 
@@ -32,7 +32,9 @@ These are custom Python scripts built using Fusion 360’s API, designed for gen
 - FreeCAD Folder
 - Fusion 360 Folder
 
-Contain all the relevant files 
+Contain all the relevant files. 
+- For FreeCAD, I have included 'input_parts.csv' as that format has to be followed for creating the input file. Bill of Material and exported STEP and STL file for washer, flange and spacer. Along with this, Python scipt for the same has been uploaded as well. A video demonstrating the workinf of the code and export (output) is shown as well. 
+- The Fusion 360 folder has Python scripts for 'Bolt Generator' as well as 'Gear Generator'. Two demonstrative videos for using Scripts in the Fusion 360 workspace have also been attached. 
 
 
 ---
@@ -45,7 +47,7 @@ Contain all the relevant files
 3. Create a new macro and paste the script 
 4. Update the `input_csv` and `output_dir` paths inside the script.
 5. Run the macro.
-6. Parts will be exported and BOM generated in the specified folder.
+6. Parts will be exported and BOM generated in the specified output folder.
 
 ### ✅ Fusion 360 Add-ins
 1. Open Fusion 360.
@@ -56,9 +58,9 @@ Contain all the relevant files
 ---
 
 📦 Requirements
-- Python (via FreeCAD or Fusion 360 environment)
-- FreeCAD 0.20+ for FreeCAD scripts
--  Fusion 360 (latest) for add-ins
+- Python (I used VS Code)
+- FreeCAD (I used FreeCAD 1.0)
+-  Fusion 360 (I used Student License Version)
 -  Basic understanding of Python and CAD modeling
 
-#FreeCAD #Fusion360 #CADAutomation #PythonScripts #EngineeringTools #BOM #ParametricDesign
+
